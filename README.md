@@ -21,4 +21,4 @@
 Планирется переписать сайт на React. Добавить валидаию форм, добавление и удление фотографий, проставление лайков.
 
 
-https://elizaveta-parada.github.io/mesto/
+https://elizaveta-parada.github.io/mesto-react/
