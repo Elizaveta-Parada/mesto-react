@@ -10,9 +10,7 @@ function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
-    const [selectedCard, setSelectedCard] = useState({})
-    const [isImagePopupOpen, setisImagePopupOpen] = useState(false)
-    
+    const [selectedCard, setSelectedCard] = useState(null)
 
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true)
@@ -28,18 +26,15 @@ function App() {
         setIsEditProfilePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
         setIsAddPlacePopupOpen(false)
-        setisImagePopupOpen(false)
+        setSelectedCard(null)
     }
 
     function handleCardClick(card) {
         setSelectedCard(card)
-        setisImagePopupOpen(true)
-
     }
 
   return (
-    <div className="App">
-        <div className="page">
+        <div>
             <Header />
             <Main 
                 onEditProfile={handleEditProfileClick}
@@ -106,10 +101,8 @@ function App() {
             <ImagePopup 
                 card={selectedCard}
                 onClose={closeAllPopups}
-                isOpen={isImagePopupOpen}
             />
         </div>
-    </div>
   );
 }
 

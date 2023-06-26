@@ -18,6 +18,7 @@ function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
                 dataCard.forEach(element => element.userId = dataUserInfo._id);
                 setCards(dataCard)
             })
+            .catch((error) => {console.log(`Ошибка при загрузке страницы ${error}`)})
     }, [])
 
 
