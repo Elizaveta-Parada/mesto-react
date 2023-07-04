@@ -1,21 +1,31 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm"
 
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-    const titleRef = useRef(null)
-    const linkRef = useRef(null)
+    const [title, setTitle] = useState("")
+    const [link, setLink] = useState("")
+
+    function handleChangeTitle(e) {
+        setTitle(e.target.value);
+    }
+
+    function handleChangeLink(e) {
+        setLink(e.target.value);
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
-        onAddPlace({ name: titleRef.current.value, link: linkRef.current.value });
+        onAddPlace({ name: title, link: link });
     }
 
     useEffect(() => {
-        titleRef.current.value = "";
-        linkRef.current.value = "";
-    });
+        setTitle("");
+        setLink("");
+    }, []);
+
+
     return (
         <PopupWithForm
             name='popup_card'
@@ -27,12 +37,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         >
             <div className="popup__field">
                 <input className="popup__input popup__input_type_title " type="text" placeholder="Название" name="title" id="title"
-                    defaultValue minLength={2} maxLength={30} required ref={titleRef} />
+                     minLength={2} maxLength={30} required value={title || ""}  onChange={handleChangeTitle}/>
                 <span className="popup__error" id="title-error"></span>
             </div>
             <div className="popup__field">
                 <input className="popup__input popup__input_type_image" type="url" placeholder="Ссылка" name="link" id="url"
-                    defaultValue required ref={linkRef} />
+                     required value={link || ""}  onChange={handleChangeLink}/>
                 <span className="popup__error" id="url-error"></span>
             </div>
         </PopupWithForm>
